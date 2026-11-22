@@ -141,19 +141,19 @@ export const Matrix2DView: React.FC<Matrix2DViewProps> = ({
   };
 
   return (
-    <div className="w-full h-full p-6 overflow-y-auto max-w-7xl mx-auto flex flex-col">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="w-full h-full p-3 sm:p-6 pb-20 sm:pb-6 overflow-y-auto max-w-7xl mx-auto flex flex-col">
+      <div className="mb-3 sm:mb-4 flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
             <span>Eisenhower Matrix Overview</span>
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-[11px] sm:text-xs text-slate-400">
             Urgent vs. Important decision grid. Keep Q1 small, invest heavily in Q2, delegate Q3, and eliminate Q4.
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 flex-1">
         {renderQuadrantCard('q1')}
         {renderQuadrantCard('q2')}
         {renderQuadrantCard('q3')}

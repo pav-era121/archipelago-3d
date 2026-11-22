@@ -241,7 +241,7 @@ export const TimelinePlannerView: React.FC<TimelinePlannerViewProps> = ({
   };
 
   return (
-    <div className="w-full h-full p-6 overflow-y-auto max-w-7xl mx-auto space-y-6">
+    <div className="w-full h-full p-3 sm:p-6 pb-24 sm:pb-12 overflow-y-auto max-w-7xl mx-auto space-y-4 sm:space-y-6">
       {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900/80 backdrop-blur-md p-5 rounded-2xl border border-slate-800 shadow-xl">
         <div>

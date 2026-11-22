@@ -245,7 +245,7 @@ const TaskTotem: React.FC<{
       <Html
         position={[0, 0.7, 0]}
         center
-        distanceFactor={18}
+        distanceFactor={22}
         zIndexRange={[100, 0]}
       >
         <div
@@ -254,7 +254,7 @@ const TaskTotem: React.FC<{
             sound.playClick();
             onSelect();
           }}
-          className={`cursor-pointer px-2.5 py-1 rounded-xl backdrop-blur-md shadow-xl border transition-all duration-200 select-none whitespace-nowrap text-xs flex flex-col gap-1 ${
+          className={`cursor-pointer px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl backdrop-blur-md shadow-xl border transition-all duration-200 select-none whitespace-nowrap text-[11px] sm:text-xs flex flex-col gap-0.5 ${
             isSelected
               ? 'bg-slate-900/95 border-white text-white scale-110 ring-2 ring-white/50'
               : task.completed
@@ -265,19 +265,19 @@ const TaskTotem: React.FC<{
           }`}
           style={{ borderColor: isSelected ? meta.color : undefined }}
         >
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs">{catMeta.icon}</span>
-            <span className={`font-semibold max-w-[130px] truncate ${task.completed ? 'line-through' : ''}`}>
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <span className="text-[10px] sm:text-xs">{catMeta.icon}</span>
+            <span className={`font-semibold max-w-[100px] sm:max-w-[130px] truncate ${task.completed ? 'line-through' : ''}`}>
               {task.title}
             </span>
-            <span className="px-1.5 py-0.2 rounded bg-slate-800 text-[10px] text-slate-300 font-mono">
+            <span className="px-1 py-0.2 rounded bg-slate-800 text-[9px] sm:text-[10px] text-slate-300 font-mono">
               {task.effortHours}h
             </span>
           </div>
 
           {/* Deadline Countdown Tag */}
           {task.dueDate && (
-            <div className="flex items-center justify-between gap-1 text-[10px] pt-0.5 border-t border-slate-800/80">
+            <div className="flex items-center justify-between gap-1 text-[9px] sm:text-[10px] pt-0.5 border-t border-slate-800/80">
               <span className={`font-medium ${deadlineBadge.isUrgent ? 'text-rose-400 font-bold animate-pulse' : 'text-slate-400'}`}>
                 {deadlineBadge.text}
               </span>

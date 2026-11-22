@@ -42,7 +42,6 @@ export const App: React.FC = () => {
   // Task Operations
   const handleSaveTask = (taskData: Omit<Task, 'id' | 'createdAt'>) => {
     if (editingTask) {
-      // Edit existing
       const updated = tasks.map((t) =>
         t.id === editingTask.id ? { ...t, ...taskData } : t
       );
@@ -50,7 +49,6 @@ export const App: React.FC = () => {
       setSelectedTask(updated.find((t) => t.id === editingTask.id) || null);
       setEditingTask(null);
     } else {
-      // Create new
       const newTask: Task = {
         ...taskData,
         id: `t-${Date.now()}`,
@@ -116,7 +114,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative w-screen h-screen bg-slate-950 overflow-hidden font-sans select-none">
-      {/* Top Navigation */}
+      {/* Top Navigation & Mobile Bottom Bar */}
       <Navbar
         currentView={currentView}
         onViewChange={(view) => {
@@ -143,7 +141,7 @@ export const App: React.FC = () => {
 
       {/* Main View Area */}
       {currentView === 'timeline' ? (
-        <div className="pt-20 h-full">
+        <div className="pt-14 md:pt-20 pb-16 md:pb-0 h-full overflow-y-auto">
           <TimelinePlannerView
             tasks={tasks}
             onSelectTask={(task) => setSelectedTask(task)}
@@ -152,7 +150,7 @@ export const App: React.FC = () => {
           />
         </div>
       ) : currentView === 'matrix2d' ? (
-        <div className="pt-20 h-full">
+        <div className="pt-14 md:pt-20 pb-16 md:pb-0 h-full overflow-y-auto">
           <Matrix2DView
             tasks={tasks}
             onSelectTask={(task) => setSelectedTask(task)}
@@ -166,9 +164,10 @@ export const App: React.FC = () => {
           />
         </div>
       ) : (
-        <div className="w-full h-full">
+        <div className="w-full h-full pb-14 md:pb-0 touch-none">
           <Canvas
             shadows
+            style={{ touchAction: 'none' }}
             camera={{
               position: currentView === 'graph3d' ? [18, 16, 22] : [0, 18, 28],
               fov: 45
@@ -194,7 +193,7 @@ export const App: React.FC = () => {
             )}
           </Canvas>
 
-          {/* Right Floating Analytics HUD */}
+          {/* Right Floating Collapsible Analytics HUD */}
           <AnalyticsHUD
             tasks={tasks}
             filterQuadrant={filterQuadrant}
@@ -202,20 +201,20 @@ export const App: React.FC = () => {
             isGraphMode={currentView === 'graph3d'}
           />
 
-          {/* Bottom Left 3D Viewport Controls Hint */}
-          <div className="absolute bottom-5 left-5 z-20 flex items-center gap-4 bg-slate-900/80 backdrop-blur-md px-3.5 py-2 rounded-xl border border-slate-800 text-[11px] text-slate-400 pointer-events-auto">
+          {/* Bottom Left 3D Viewport Controls Hint (Hidden on mobile) */}
+          <div className="hidden sm:flex absolute bottom-5 left-5 z-20 items-center gap-3 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[10px] text-slate-400 pointer-events-auto">
             <div className="flex items-center gap-1.5">
-              <Move className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Left-drag to Orbit</span>
+              <Move className="w-3 h-3 text-indigo-400" />
+              <span>Drag to Orbit</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
-              <span>Right-drag to Pan</span>
+              <span>Pinch to Zoom</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
-              <MousePointerClick className="w-3.5 h-3.5 text-sky-400" />
-              <span>Click Island or Task to Inspect</span>
+              <MousePointerClick className="w-3 h-3 text-sky-400" />
+              <span>Click to Inspect</span>
             </div>
           </div>
         </div>
